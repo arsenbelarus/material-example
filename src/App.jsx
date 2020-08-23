@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
-import {AppBar, BottomNavigation, BottomNavigationAction, CardMedia, Button, Paper, Box, Toolbar, Container,
-        IconButton, Typography, Card, Grid, CardContent, CardActions} from "@material-ui/core";
+import {
+    AppBar, BottomNavigation, BottomNavigationAction, CardMedia, Button, Paper, Box, Toolbar, Container,
+    IconButton, Typography, Card, Grid, CardContent, CardActions, Dialog, DialogContentText, TextField,
+    DialogTitle, DialogContent, DialogActions
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import LayerIcon from "@material-ui/icons/Layers";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
@@ -9,8 +12,6 @@ import RestoreIcon from "@material-ui/icons/Restore";
 import FolderIcon from "@material-ui/icons/Folder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-
-
 import {makeStyles} from "@material-ui/core/styles";
 
 
@@ -66,7 +67,11 @@ function App() {
     const classes = useStyles()
     const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     const [value, setValue] = useState("recents")
+    const [open, setOpen] = useState(false)
     const handleChange = (event, newValue) => setValue(newValue)
+    const handleLogIn = () => setOpen(true)
+    const handleDialogClose = () => setOpen(false)
+
 
     return (
         <>
@@ -79,7 +84,34 @@ function App() {
                         </IconButton>
                         <Typography variant="h6" className={classes.title}> My material-UI </Typography>
                         <Box mr={3}>
-                            <Button color={"inherit"} variant={"outlined"}> Log in </Button>
+                            <Button color={"inherit"} variant={"outlined"} onClick={handleLogIn}> Log in </Button>
+
+                            <Dialog open={open} onClose={handleDialogClose} aria-labelledby={"Log in form"}>
+                                <DialogTitle id={"Log in form"}> Log in </DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText> Please Log in to view more </DialogContentText>
+                                    <TextField autofocus
+                                               margin={"dense"}
+                                               id={"name"}
+                                               label={"E-mail address"}
+                                               type={"email"}
+                                               fullWidth
+                                               required
+                                    />
+                                    <TextField margin={"dense"}
+                                               id={"password"}
+                                               label={"Password"}
+                                               type={"password"}
+                                               fullWidth
+                                               required
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleDialogClose} color={"primary"} > Cancel </Button>
+                                    <Button onClick={handleDialogClose} color={"primary"} > Log in </Button>
+                                </DialogActions>
+                            </Dialog>
+
                         </Box>
                         <Button color={"secondary"} variant={"contained"}> Sign Up </Button>
                     </Toolbar>
@@ -109,7 +141,7 @@ function App() {
                         </Grid>
                     </Container>
                 </Paper>
-                <div className={classes.mainContent}>
+                <div>
                     <Container maxWidth={"md"}>
                         <Typography variant={"h2"}
                                     align={"center"}
@@ -126,7 +158,7 @@ function App() {
                             lacus. Fusce libero augue, ultrices id mollis sed, dignissim at eros. Maecenas lacinia
                             lacus.
                         </Typography>
-                        <div className={classes.mainButtons}>
+                        <div>
                             <Grid container spacing={2} justify={"center"}>
                                 <Grid item>
                                     <Button variant={"contained"} color={"primary"}> Start now</Button>
@@ -142,7 +174,7 @@ function App() {
                     <Grid container spacing={4}>
                         {cards.map(card => {
                             return <Grid item key={card} xs={12} sm={6} md={4}>
-                                <Card className={classes.card}>
+                                <Card>
                                     <CardMedia
                                         className={classes.cardMedia}
                                         image={"https://source.unsplash.com/random"}
