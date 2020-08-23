@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/arsenbelarus.github.io/material-example/static/css/main.5f361e03.chunk.css",
+    "main.js": "/arsenbelarus.github.io/material-example/static/js/main.5354660f.chunk.js",
+    "main.js.map": "/arsenbelarus.github.io/material-example/static/js/main.5354660f.chunk.js.map",
+    "runtime-main.js": "/arsenbelarus.github.io/material-example/static/js/runtime-main.91f03a8d.js",
+    "runtime-main.js.map": "/arsenbelarus.github.io/material-example/static/js/runtime-main.91f03a8d.js.map",
+    "static/js/2.eb93cca3.chunk.js": "/arsenbelarus.github.io/material-example/static/js/2.eb93cca3.chunk.js",
+    "static/js/2.eb93cca3.chunk.js.map": "/arsenbelarus.github.io/material-example/static/js/2.eb93cca3.chunk.js.map",
+    "index.html": "/arsenbelarus.github.io/material-example/index.html",
+    "precache-manifest.4513bfa66dc60fceced1a6fd1bd66162.js": "/arsenbelarus.github.io/material-example/precache-manifest.4513bfa66dc60fceced1a6fd1bd66162.js",
+    "service-worker.js": "/arsenbelarus.github.io/material-example/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/arsenbelarus.github.io/material-example/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.eb93cca3.chunk.js.LICENSE.txt": "/arsenbelarus.github.io/material-example/static/js/2.eb93cca3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91f03a8d.js",
+    "static/js/2.eb93cca3.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.5354660f.chunk.js"
+  ]
+}
