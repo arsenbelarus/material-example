@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import {AppBar, Button, Paper, Box, Toolbar, Container, IconButton, Typography, Grid} from "@material-ui/core";
+import {AppBar, BottomNavigation, BottomNavigationAction, CardMedia, Button, Paper, Box, Toolbar, Container,
+        IconButton, Typography, Card, Grid, CardContent, CardActions} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import LayerIcon from "@material-ui/icons/Layers";
+import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FolderIcon from "@material-ui/icons/Folder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+
+
 import {makeStyles} from "@material-ui/core/styles";
 
 
@@ -34,14 +43,30 @@ const useStyles = makeStyles((theme) => ({
     },
     mainFeaturesPostContent: {
         position: "relative",
-        padding: theme.spacing(9),
+        padding: theme.spacing(6),
         fontShadow: "1px 1px 1px black",
         fontWeight: "bold",
+        marginTop: theme.spacing(8),
+    },
+    cardMedia: {
+        paddingTop: "56.25%",
+    },
+    cardContent: {
+        flexGrow: 1,
+    },
+    cardGrid: {
+        marginTop: theme.spacing(4),
+    },
+    footer: {
+        marginTop: theme.spacing(4),
     },
 }))
 
 function App() {
-    const classes = useStyles();
+    const classes = useStyles()
+    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const [value, setValue] = useState("recents")
+    const handleChange = (event, newValue) => setValue(newValue)
 
     return (
         <>
@@ -52,7 +77,7 @@ function App() {
                                     aria-label="menu" className={classes.menuButton}>
                             <MenuIcon/>
                         </IconButton>
-                        <Typography variant="h6" className={classes.title}> My awesome material-UI example </Typography>
+                        <Typography variant="h6" className={classes.title}> My material-UI </Typography>
                         <Box mr={3}>
                             <Button color={"inherit"} variant={"outlined"}> Log in </Button>
                         </Box>
@@ -81,13 +106,97 @@ function App() {
                                     </Button>
                                 </div>
                             </Grid>
-
                         </Grid>
-
                     </Container>
-
                 </Paper>
+                <div className={classes.mainContent}>
+                    <Container maxWidth={"md"}>
+                        <Typography variant={"h2"}
+                                    align={"center"}
+                                    color={"textPrimary"}
+                                    gutterBottom>
+                            Some text
+                        </Typography>
+                        <Typography variant={"h5"}
+                                    align={"justify"}
+                                    color={"textSecondary"}
+                                    paragraph>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae feugiat odio.
+                            Fusce libero augue, ultrices id mollis sed, dignissim at eros. Maecenas lacinia
+                            lacus. Fusce libero augue, ultrices id mollis sed, dignissim at eros. Maecenas lacinia
+                            lacus.
+                        </Typography>
+                        <div className={classes.mainButtons}>
+                            <Grid container spacing={2} justify={"center"}>
+                                <Grid item>
+                                    <Button variant={"contained"} color={"primary"}> Start now</Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button variant={"outlined"} color={"primary"}> Learn more</Button>
+                                </Grid>
+                            </Grid>
+                        </div>
+                    </Container>
+                </div>
+                <Container className={classes.cardGrid} maxWidth={"md"}>
+                    <Grid container spacing={4}>
+                        {cards.map(card => {
+                            return <Grid item key={card} xs={12} sm={6} md={4}>
+                                <Card className={classes.card}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={"https://source.unsplash.com/random"}
+                                        title={"Image title"}
+                                    />
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography variant={"h5"} gutterBottom>
+                                            Blog post
+                                        </Typography>
+                                        <Typography>
+                                            Blog post. Blog post. Blog post. Blog post. Blog post.
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button size={"small"} color={"primary"}> View </Button>
+                                        <Button size={"small"} color={"primary"}> Edit </Button>
+                                        <LayerIcon/>
+                                        <PlayCircleFilledIcon/>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        })}
+                    </Grid>
+                </Container>
             </main>
+            <footer className={classes.footer}>
+                <Typography variant={"h5"} align={"center"} gutterBottom> My Footer </Typography>
+                <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+                    <BottomNavigationAction
+                        label={"Recents"}
+                        value={"recents"}
+                        icon={<RestoreIcon/>}
+                    />
+                    <BottomNavigationAction
+                        label={"Favorites"}
+                        value={"favorites"}
+                        icon={<FavoriteIcon/>}
+                    />
+                    <BottomNavigationAction
+                        label={"Nearby"}
+                        value={"nearby"}
+                        icon={<LocationOnIcon/>}
+                    />
+                    <BottomNavigationAction
+                        label={"Folder"}
+                        value={"folder"}
+                        icon={<FolderIcon/>}
+                    />
+                </BottomNavigation>
+                <Typography align={"center"} variant={"subtitle1"}
+                            component={"p"} color={"textSecondary"}>
+                    Arsen Vaskanian, all rights reserved
+                </Typography>
+            </footer>
         </>
     );
 }
